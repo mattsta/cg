@@ -38,7 +38,14 @@ start() ->
 get_something(ServiceSpace, Service, What) ->
   Holder = ?SPACE(ServiceSpace),
   ServiceHolder = get_value(Service, Holder),
-  get_value(What, ServiceHolder).
+  % The holder can either be a proplist of detailed values
+  % - OR -
+  % it can just be one thing if e.g. we only ever care about
+  % a port number.
+  case ServiceHolder of
+    S when is_list(S) -> get_value(What, ServiceHolder);
+                    _ -> S
+  end.
 
 %%%--------------------------------------------------------------------
 %%% Common Retrieval Types
