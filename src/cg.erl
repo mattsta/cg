@@ -9,7 +9,7 @@
 
 -import(proplists, [get_value/2]).
 
--define(SPACE(X), application:get_env(cg, X)).
+-define(SPACE(X), (fun() -> {ok, ZedU} = application:get_env(cg, X), ZedU end)()).
 %%%--------------------------------------------------------------------
 %%% starting
 %%%--------------------------------------------------------------------
@@ -46,7 +46,7 @@ get_something(ServiceSpace, Service, What) ->
   % a port number.
   case ServiceHolder of
     S when is_list(S) -> get_value(What, ServiceHolder);
-                    _ -> S
+                    _ -> ServiceHolder
   end.
 
 %%%--------------------------------------------------------------------
