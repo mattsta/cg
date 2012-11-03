@@ -5,6 +5,8 @@
 -export([host/1, host/2]).
 -export([limit/1, limit/2]).
 
+-export([use_space/0]).
+
 -import(proplists, [get_value/2]).
 
 -define(SPACE(X), application:get_env(cg, X)).
