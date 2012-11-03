@@ -1,0 +1,13 @@
+{application, cg,
+ [
+  {description, "cg: abstracted network config getter"},
+  {vsn, "0.3"},
+  {modules, []},
+  {registered, [cg_sup]},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, {cg_app, []}},
+  {env, []}
+ ]}.
